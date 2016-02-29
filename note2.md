@@ -65,6 +65,7 @@ Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
 startActivity(intent);
 	-- 接收一个Intent参数，启动目标活动
 回到上一个活动：按下 Back键就可以销毁当前活动，从而回到上一个活动
+
 ###2、使用隐式 Intent
 通过action和 category等信息，启动相应的活动。
 AndroidManifest.xml中<intent-filter>里添加
@@ -75,6 +76,7 @@ AndroidManifest.xml中<intent-filter>里添加
 	-- 表明我们想要启动能够响应 com.example.activitytest.ACTION_START这个 action的活动
 每个 Intent中只能指定一个 action，但却能指定多个 category。
 	-- intent.addCategory("com.example.activitytest.MY_CATEGORY");
+
 ###3、更多隐式 Intent的用法
 1. 还可以启动其他程序的活动
 例如：调用系统的浏览器来打开网页
@@ -86,4 +88,36 @@ intent.setData(Uri.parse("http://www.baidu.com"));
 例如：<data android:scheme="http" />
 	--  这样该活动就和浏览器一样，能够响应一个打开网页的Intent了
 
+###4、向下一个活动传递数据
+intent.putExtra("extra_data", data);
+	-- 把我们想要传递的数据暂存在 Intent 中
+	-- 参数1：键
+	-- 参数2：真正要传递的数据
+Intent intent = getIntent();
+	-- 获取到用于启动 SecondActivity 的 Intent
+String data = intent.getStringExtra("extra_data");
+	-- 获取传递的数据
 
+###5、返回数据给上一个活动
+####1 上一个活动：
+startActivityForResult(intent, 1);
+	-- 也是用于启动活动的，但这个方法期望在活动销毁的时候能够返回一个结果给上一个活动。
+	-- 参数2: 请求码，用于在之后的回调中判断数据的来源。
+重写onActivityResult(int requestCode, int resultCode, Intent data)方法
+	--  在下一个活动被销毁之后会回调上一个活动的onActivityResult()方法
+	-- requestCode：请求码
+	-- resultCode：返回数据时传入的处理结果
+	-- data:携带着返回数据的Intent
+
+####当前活动：
+Intent intent = new Intent();
+	-- 还是构建了一个 Intent，只不过这个Intent仅仅是用于传递数据而已
+intent.putExtra("data_return", "Hello FirstActivity");、
+	-- 把要传递的数据存放在 Intent中
+setResult(RESULT_OK, intent);
+	-- 向上一个活动返回数据的
+	-- 参数1：向上一个活动返回处理结果
+	-- 参数2：把带有数据的 Intent 传递回去
+
+####如果通过按下Back键回到上一个活动
+当前活动重写onBackPressed()
