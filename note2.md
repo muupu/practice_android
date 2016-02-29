@@ -40,8 +40,8 @@ Button button1 = (Button) findViewById(R.id.button_1);
 	<item
 	android:id="@+id/add_item"
 	android:title="Add"/>
-android:id:给这个菜单项唯一标识符
-android:title:菜单项名称
+android:id: 给这个菜单项唯一标识符
+android:title: 菜单项名称
 4.重写 onCreateOptionsMenu()方法:
 getMenuInflater().inflate(R.menu.main, menu); 
     -- 获取MenuInflater对象，再调用它的 inflate()方法就可以给当前活动创建菜单了
@@ -55,6 +55,7 @@ return true;
 ###7、销毁一个活动
 1.Back键
 2.Activity 类的finish()方法
+
 
 
 ## 使用Intent
@@ -121,3 +122,31 @@ setResult(RESULT_OK, intent);
 
 ####如果通过按下Back键回到上一个活动
 当前活动重写onBackPressed()
+
+
+
+## 活动的生命周期
+###1、返回栈
+
+###2、四种状态
+####1. 运行状态
+位于返回栈的栈顶
+####2. 暂停状态
+不再处于栈顶位置，但仍然可见
+####3. 停止状态
+不再处于栈顶位置，并且完全不可见
+####4. 销毁状态
+
+###3、活动的7个生存期
+1. onCreate()
+2. onStart()
+3. onResume()
+4. onPause()
+5. onStop()
+6. onDestroy()
+7. onRestart()
+
+
+
+
+
