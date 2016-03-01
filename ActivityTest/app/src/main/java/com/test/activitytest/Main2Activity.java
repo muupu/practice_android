@@ -20,11 +20,21 @@ public class Main2Activity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("data_return", "Hello MainActivity");
-                setResult(RESULT_OK, intent);
-                finish();
+                returnData();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        returnData();
+    }
+
+    private void returnData()
+    {
+        Intent intent = new Intent();
+        intent.putExtra("data_return", "Hello MainActivity");
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }
