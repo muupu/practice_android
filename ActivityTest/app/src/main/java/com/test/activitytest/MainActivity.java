@@ -40,12 +40,14 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(MainActivity.this, "you clicked button1",
 //                        Toast.LENGTH_SHORT).show();
 
-//                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
-//                startActivity(intent);
-
-                Intent intent = new Intent("com.test.activitytest.Action_START1");
-                intent.addCategory("com.test.activitytest.MY_CATEGORY1");
+                String data = "Hello Main2Activity";
+                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                intent.putExtra("extra_data", data);
                 startActivity(intent);
+
+//                Intent intent = new Intent("com.test.activitytest.Action_START1");
+//                intent.addCategory("com.test.activitytest.MY_CATEGORY1");
+//                startActivity(intent);
             }
         });
 
@@ -56,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("http://www.baidu.com"));
                 startActivity(intent);
+            }
+        });
+
+        Button button_forresult = (Button)findViewById(R.id.button_forresult);
+        button_forresult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                startActivityForResult(intent, 1);
             }
         });
     }
@@ -80,4 +91,16 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    String returnedData = data.getStringExtra("data_return");
+                    Toast.makeText(this, returnedData, Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default:
+        }
+    }
 }
