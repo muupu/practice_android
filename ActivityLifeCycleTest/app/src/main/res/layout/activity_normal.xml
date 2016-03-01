@@ -5,23 +5,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.test.activitylifecycletest.MainActivity">
+    tools:context="com.test.activitylifecycletest.NormalActivity">
 
-    <Button
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="start_normal_button"
-        android:id="@+id/start_normal_button"
+        android:text="This is a normal activity"
+        android:id="@+id/textView_normal"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="73dp" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="start_normal_button"
-        android:id="@+id/start_dialog_button"
-        android:layout_below="@+id/start_normal_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="68dp" />
+        android:layout_marginTop="45dp" />
 </RelativeLayout>
