@@ -53,12 +53,6 @@ public class MainActivity extends AppCompatActivity {
         button11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(MainActivity.this, "you clicked button1",
-//                        Toast.LENGTH_SHORT).show();
-
-//                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
-//                startActivity(intent);
-
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("http://www.baidu.com"));
                 startActivity(intent);

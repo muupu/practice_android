@@ -15,18 +15,27 @@
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity android:name=".Main2Activity" >
             <intent-filter>
-                <action android:name="com.test.activitytest.Action_START1" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.test.activitytest.MY_CATEGORY1" />
+                 <action android:name="com.test.activitytest.Action_START1" />
+                 <category android:name="android.intent.category.DEFAULT" />
+                 <category android:name="com.test.activitytest.MY_CATEGORY1" />
+                <data android:scheme="http" />
             </intent-filter>
         </activity>
 
+        <activity android:name=".Main22Activity" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="http" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
