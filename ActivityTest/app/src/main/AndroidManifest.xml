@@ -23,6 +23,7 @@
             <intent-filter>
                 <action android:name="com.test.activitytest.Action_START1" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.test.activitytest.MY_CATEGORY1" />
             </intent-filter>
         </activity>
 
