@@ -10,6 +10,7 @@ android:layout_width 当前元素的宽度
 	match_parent：让当前元素和父元素一样宽
 android:layout_height 当前元素的高度
 	wrap_content：当前元素的高度只要能刚好包含里面的内容就行
+	
 android:text 元素中显示的文字内容
 项目中添加的任何资源都会在R文件中生成一个相应的资源id。
 
@@ -40,8 +41,8 @@ Button button1 = (Button) findViewById(R.id.button_1);
 	<item
 	android:id="@+id/add_item"
 	android:title="Add"/>
-android:id: 给这个菜单项唯一标识符
-android:title: 菜单项名称
+android:id :给这个菜单项唯一标识符
+android:title:菜单项名称
 4.重写 onCreateOptionsMenu()方法:
 getMenuInflater().inflate(R.menu.main, menu); 
     -- 获取MenuInflater对象，再调用它的 inflate()方法就可以给当前活动创建菜单了
