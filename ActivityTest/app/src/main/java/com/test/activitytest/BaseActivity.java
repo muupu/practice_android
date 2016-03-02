@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
-public class Main22Activity extends BaseActivity {
+/**
+ * Created by qiaoda.zqd on 2016/3/2.
+ */
+public class BaseActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("Main22Activity", "Task id is " + getTaskId());
-        setContentView(R.layout.activity_main22);
+        Log.d("BaseActivity", getClass().getSimpleName());
     }
 }
