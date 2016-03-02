@@ -13,7 +13,7 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("Main2Activity", this.toString());
+        Log.d("Main2Activity", "Task id is " + getTaskId());
         setContentView(R.layout.activity_main2);
 //        Intent intent = getIntent();
 //        String data = intent.getStringExtra("extra_data");
@@ -23,7 +23,7 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //returnData();
-                Intent intent = new Intent(Main2Activity.this, MainActivity.class);
+                Intent intent = new Intent(Main2Activity.this, Main22Activity.class);
                 startActivity(intent);
             }
         });
