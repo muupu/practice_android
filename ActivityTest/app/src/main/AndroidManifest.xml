@@ -23,7 +23,7 @@
 
         <activity
             android:name=".Main2Activity"
-            android:launchMode="singleInstance">
+            android:launchMode="singleTask">
             <intent-filter>
                  <action android:name="com.test.activitytest.Action_START1" />
                  <category android:name="android.intent.category.DEFAULT" />

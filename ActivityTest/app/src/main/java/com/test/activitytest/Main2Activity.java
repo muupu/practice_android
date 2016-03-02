@@ -23,8 +23,9 @@ public class Main2Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //returnData();
-                Intent intent = new Intent(Main2Activity.this, Main22Activity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(Main2Activity.this, Main22Activity.class);
+//                startActivity(intent);
+                ActivityCollector.finishAll();
             }
         });
     }

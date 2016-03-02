@@ -113,4 +113,10 @@ public class MainActivity extends BaseActivity {
         super.onRestart();
         Log.d("MainActivity", "onRestart");
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("MainActivity", "onDestroy");
+    }
 }
