@@ -43,9 +43,9 @@ public class Main2Activity extends BaseActivity {
         finish();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("Main2Activity", "onDestroy");
-    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        Log.d("Main2Activity", "onDestroy");
+//    }
 }
