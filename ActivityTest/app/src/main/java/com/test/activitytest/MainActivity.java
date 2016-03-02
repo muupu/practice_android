@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 //                Intent intent = new Intent("com.test.activitytest.Action_START1");
 //                intent.addCategory("com.test.activitytest.MY_CATEGORY1");
 //                startActivity(intent);
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
                 startActivity(intent);
             }
         });
