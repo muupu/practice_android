@@ -50,8 +50,7 @@ public class MainActivity extends BaseActivity {
 //                Intent intent = new Intent("com.test.activitytest.Action_START1");
 //                intent.addCategory("com.test.activitytest.MY_CATEGORY1");
 //                startActivity(intent);
-                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
-                startActivity(intent);
+                Main2Activity.actionStart(MainActivity.this, "data1", "data2");
             }
         });
 
