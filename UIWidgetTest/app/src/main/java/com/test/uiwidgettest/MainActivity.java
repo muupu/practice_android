@@ -2,6 +2,7 @@ package com.test.uiwidgettest;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,38 +34,11 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.button:
-//                        String inputText = editText.getText().toString();
-//                        Toast.makeText(MainActivity.this, inputText, Toast.LENGTH_SHORT).show();
-
-//                        imageView.setImageResource(R.drawable.wt_9348);
-
-//                        if (progressBar.getVisibility() == View.GONE) {
-//                            progressBar.setVisibility(View.VISIBLE);
-//                        } else {
-//                            progressBar.setVisibility(View.GONE);
-//                        }
-
-//                        int progress = progressBar.getProgress();
-//                        progress += 10;
-//                        progressBar.setProgress(progress);
-
-                        AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
-                        dialog.setTitle("This is Dialog");
-                        dialog.setMessage("Something important.");
-                        dialog.setCancelable(false);
-                        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-                        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-                        dialog.show();
+//                        testEditView();
+//                        testImageView();
+//                        testProgressBar1();
+//                        testProgressBar2();
+//                        testAlertDialog();
                         break;
                     default:
                         break;
@@ -72,4 +46,48 @@ public class MainActivity extends Activity {
             }
         });
     }
+
+    public void testEditView() {
+        String inputText = editText.getText().toString();
+        Toast.makeText(MainActivity.this, inputText, Toast.LENGTH_SHORT).show();
+    }
+
+    public void testImageView() {
+        imageView.setImageResource(R.drawable.wt_9348);
+    }
+
+    public void testProgressBar1() {
+        int progress = progressBar.getProgress();
+        progress += 10;
+        progressBar.setProgress(progress);
+    }
+
+    public void testProgressBar2() {
+        if (progressBar.getVisibility() == View.GONE) {
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+        }
+    }
+
+    public void testAlertDialog() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+        dialog.setTitle("This is Dialog");
+        dialog.setMessage("Something important.");
+        dialog.setCancelable(false);
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        dialog.show();
+    }
+
 }
