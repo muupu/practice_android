@@ -39,6 +39,7 @@ public class MainActivity extends Activity {
 //                        testProgressBar1();
 //                        testProgressBar2();
 //                        testAlertDialog();
+                        testProgressDialog();
                         break;
                     default:
                         break;
@@ -90,4 +91,11 @@ public class MainActivity extends Activity {
         dialog.show();
     }
 
+    public void testProgressDialog() {
+        ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+        progressDialog.setTitle("This is ProgressDialog");
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(true);
+        progressDialog.show();
+    }
 }
