@@ -1,9 +1,10 @@
 package com.test.activitylifecycletest;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class DialogActivity extends AppCompatActivity {
+public class DialogActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
