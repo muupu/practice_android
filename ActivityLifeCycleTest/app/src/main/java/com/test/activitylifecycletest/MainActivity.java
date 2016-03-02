@@ -17,6 +17,11 @@ public class MainActivity extends Activity {
         Log.d(TAG, "onCreate");
         setContentView(R.layout.activity_main);
 
+        if (savedInstanceState != null) {
+            String tempData = savedInstanceState.getString("data_key");
+            Log.d(TAG, tempData);
+        }
+
         Button startNormalActivity = (Button)findViewById(R.id.start_normal_button);
         startNormalActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +39,13 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String tempData = "Something you just typed";
+        outState.putString("data_key", tempData);
     }
 
     @Override
