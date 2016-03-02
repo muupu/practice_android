@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Log.d("MainActivity", this.toString());
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -40,14 +42,16 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(MainActivity.this, "you clicked button1",
 //                        Toast.LENGTH_SHORT).show();
 
-                String data = "Hello Main2Activity";
-                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
-                intent.putExtra("extra_data", data);
-                startActivity(intent);
+//                String data = "Hello Main2Activity";
+//                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+//                intent.putExtra("extra_data", data);
+//                startActivity(intent);
 
 //                Intent intent = new Intent("com.test.activitytest.Action_START1");
 //                intent.addCategory("com.test.activitytest.MY_CATEGORY1");
 //                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
