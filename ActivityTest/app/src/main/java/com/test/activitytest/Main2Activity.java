@@ -41,4 +41,10 @@ public class Main2Activity extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("Main2Activity", "onDestroy");
+    }
 }

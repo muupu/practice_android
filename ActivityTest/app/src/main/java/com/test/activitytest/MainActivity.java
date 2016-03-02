@@ -107,4 +107,10 @@ public class MainActivity extends AppCompatActivity {
             default:
         }
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("MainActivity", "onRestart");
+    }
 }
