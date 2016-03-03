@@ -26,7 +26,12 @@
         <receiver android:name=".BootCompleteReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                
+
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".MyBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="com.test.broadcasttest.MY_BROADCAST" />
             </intent-filter>
         </receiver>
     </application>
