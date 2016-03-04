@@ -2,25 +2,20 @@ apply plugin: 'com.android.application'
 
 dependencies {
     compile 'com.android.support:support-v4:22.2.0'
-
-    compile('com.google.code.gson:gson:2.3.1')
-
+    compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'de.hdodenhof:circleimageview:1.2.1'
     compile('com.github.ksoichiro:android-observablescrollview:1.2.1') {
         exclude group: 'com.android.support', module: 'support-v4'
     }
-
-    compile('com.nostra13.universalimageloader:universal-image-loader:1.9.1')
-    compile('com.nineoldandroids:library:2.4.0')
-    compile('com.jakewharton:butterknife:6.+')
-    compile('com.squareup.picasso:picasso:2.+')
-
-    compile('com.github.castorflex.smoothprogressbar:library:0.5.2')
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.1'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.jakewharton:butterknife:6.+'
+    compile 'com.squareup.picasso:picasso:2.+'
+    compile 'com.github.castorflex.smoothprogressbar:library:0.5.2'
     compile('com.mcxiaoke.viewpagerindicator:library:2.4.1') {
         exclude group: 'com.android.support', module: 'support-v4'
     }
-
     compile('com.mcxiaoke.oauthsimple:oauthsimple:2.0.+') {
         exclude group: 'org.json', module: 'json'
     }
@@ -28,7 +23,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-v4'
     }
     compile 'com.mcxiaoke.photoview:library:1.2.3'
-
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
 
@@ -43,22 +37,16 @@ android {
     }
 
     signingConfigs {
-        release {
-//            storeFile file(project.ANDROID_KEY_STORE)
-//            storePassword project.ANDROID_STORE_PASSWORD
-//            keyAlias project.ANDROID_KEY_ALIAS
-//            keyPassword project.ANDROID_KEY_PASSWORD
-        }
     }
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
             debuggable false
         }
 
         beta {
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
             versionNameSuffix "-beta"
             debuggable true
         }
@@ -68,6 +56,7 @@ android {
             versionNameSuffix "-dev" + getDate()
             debuggable true
         }
+
     }
 
     lintOptions {
@@ -78,7 +67,7 @@ android {
 
 }
 
-checkSigningConfig()
+//checkSigningConfig()
 
 def getDate() {
     def date = new Date()
