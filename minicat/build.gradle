@@ -1,0 +1,25 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.2.3'
+    }
+}
+
+allprojects {
+    group = 'com.mcxiaoke.minicat'
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://raw.github.com/mcxiaoke/mavenrepo/master/repository/' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+}
+
