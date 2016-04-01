@@ -9,5 +9,8 @@ public class JniTest {
         System.loadLibrary("JniTest");
     }
 
+    // 静态注册方法
     public native String getStringFromNative();
+    // 动态注册方法
+    public native String getStringDynamic(String name);
 }
