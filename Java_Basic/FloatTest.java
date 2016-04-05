@@ -4,6 +4,7 @@ import java.math.RoundingMode;
 public class FloatTest {
 
 	public static void printDecimalFormat(double progress) {
+		//占位符可以使用0和#两种，当使用0的时候会严格按照样式来进行匹配，不够的时候会补0，而使用#时会将前后的0进行忽略  
 		DecimalFormat df = new DecimalFormat("#.#");
 		df.setRoundingMode(RoundingMode.FLOOR);	
         // df.setMaximumFractionDigits(1);
