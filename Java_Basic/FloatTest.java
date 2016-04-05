@@ -1,5 +1,15 @@
+import java.text.DecimalFormat;
+import java.math.RoundingMode;
 
 public class FloatTest {
+
+	public static void printDecimalFormat(double progress) {
+		DecimalFormat formater = new DecimalFormat();
+        formater.setMaximumFractionDigits(1);
+        formater.setGroupingSize(0);
+        formater.setRoundingMode(RoundingMode.FLOOR);
+        System.out.println(formater.format(progress));
+	}
 
 	public static void printProgress(double progress) {
 		System.out.println("progress:" + progress);
@@ -22,6 +32,8 @@ public class FloatTest {
 		// update...100.0%
 		printProgress(99.94);  
 		printProgress(99.95); 
+		printDecimalFormat(99.94);
+		printDecimalFormat(99.95);
 
 		printProgress(100f * 99/ 100);  // progress:99.0
 		                                // update...99.0%
