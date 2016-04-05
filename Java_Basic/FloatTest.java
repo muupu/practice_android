@@ -4,11 +4,12 @@ import java.math.RoundingMode;
 public class FloatTest {
 
 	public static void printDecimalFormat(double progress) {
-		DecimalFormat formater = new DecimalFormat();
-        formater.setMaximumFractionDigits(1);
-        formater.setGroupingSize(0);
-        formater.setRoundingMode(RoundingMode.FLOOR);
-        System.out.println(formater.format(progress));
+		DecimalFormat df = new DecimalFormat("#.#");
+		df.setRoundingMode(RoundingMode.FLOOR);	
+        // df.setMaximumFractionDigits(1);
+        // df.setGroupingSize(0);
+        // df.setRoundingMode(RoundingMode.FLOOR);
+        System.out.println(df.format(progress));
 	}
 
 	public static void printProgress(double progress) {
