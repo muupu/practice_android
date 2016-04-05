@@ -2,6 +2,7 @@
 public class FloatTest {
 
 	public static void printProgress(double progress) {
+		System.out.println("progress:" + progress);
 		String progressStr;
 		if (progress <= 0) {
 			progressStr = "0";
@@ -10,11 +11,18 @@ public class FloatTest {
 		} else {
 			progressStr = String.format("%.1f", progress);
 		}
-		System.out.println("update..." + progress + "%");
+		System.out.println("update..." + progressStr + "%");
 	}
 
 	public static void main(String[] args) {
-		double progress = 100f * 99 / 100;
-		printProgress(progress);
+		printProgress(100f * 99 / 100);  // update...99.0%
+		printProgress(100f * 0 / 100);   // update...0%
+		printProgress(100f * 100 / 100); // update...100%
+
+		printProgress(100f * 100 / 0);   // progress:Infinity
+										 // update...100%
+		
+		printProgress(100f * 0 / 0);     // progress:NaN
+		                                 // update...NaN%
 	}
 }
