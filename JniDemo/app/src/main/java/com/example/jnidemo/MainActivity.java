@@ -14,6 +14,6 @@ public class MainActivity extends Activity {
 
         JniTest jniTest = new JniTest();
         Log.d("JniTest", jniTest.getStringFromNative());
-        Log.d("JniTest", jniTest.getStringDynamic("JNItestDynamic"));
+//        Log.d("JniTest", jniTest.getStringDynamic("JNItest"));
     }
 }
