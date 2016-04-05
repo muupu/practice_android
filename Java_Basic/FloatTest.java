@@ -1,8 +1,7 @@
 
 public class FloatTest {
 
-	public static void main(String[] args) {
-		double progress = 100f * 99 / 100;
+	public static void printProgress(double progress) {
 		String progressStr;
 		if (progress <= 0) {
 			progressStr = "0";
@@ -12,5 +11,10 @@ public class FloatTest {
 			progressStr = String.format("%.1f", progress);
 		}
 		System.out.println("update..." + progress + "%");
+	}
+
+	public static void main(String[] args) {
+		double progress = 100f * 99 / 100;
+		printProgress(progress);
 	}
 }
