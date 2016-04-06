@@ -5,6 +5,10 @@ public class PairTest {
 		Pair<String> mm = ArrayAlg.minmax(words);
 		System.out.println("min = " + mm.getFirst());
 		System.out.println("max = " + mm.getSecond());
+
+		String middle = ArrayAlg.<String>getMiddle("John", "Q.", "public");
+		System.out.println("middle = " + middle);
+
 	}
 }
 
@@ -18,5 +22,10 @@ class ArrayAlg {
 			if (max.compareTo(a[i]) < 0) max = a[i];
 		}
 		return new Pair<>(min, max);
+	}
+
+	// generic method
+	public static <T> T getMiddle(T...a) {
+		return a[a.length / 2];
 	}
 }
