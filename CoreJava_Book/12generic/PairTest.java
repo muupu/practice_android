@@ -6,7 +6,8 @@ public class PairTest {
 		System.out.println("min = " + mm.getFirst());
 		System.out.println("max = " + mm.getSecond());
 
-		String middle = ArrayAlg.<String>getMiddle("John", "Q.", "public");
+		// String middle = ArrayAlg.<String>getMiddle("John", "Q.", "public");
+		String middle = ArrayAlg.getMiddle(words);
 		System.out.println("middle = " + middle);
 
 	}
