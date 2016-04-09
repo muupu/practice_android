@@ -28,6 +28,11 @@ public class LinkedListTest {
 		iter.next();
 		iter.add("Juliet");
 		System.out.println(staff);
+
+		ListIterator<String> iter1 = staff.listIterator();
+		String oldValue = iter1.next();
+		iter1.set("NewValue");
+		System.out.println(staff);
 	}
 
 	public static void main(String[] args) {
