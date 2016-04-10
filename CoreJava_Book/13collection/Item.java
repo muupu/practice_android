@@ -24,12 +24,11 @@ public class Item implements Comparable<Item> {
 		if (other == null) return false;
 		if (getClass() != other.getClass()) return false;
 		Item otherItem = (Item)other;
-		return Object.equals(mDescription, other.mDescription) 
-			&& mPartNumber == other.mPartNumber;
+		return Objects.equals(mDescription, otherItem.mDescription) && mPartNumber == otherItem.mPartNumber;
 	}
 
 	public int hashCode() {
-		return Object.hash(mDescription, mPartNumber);
+		return Objects.hash(mDescription, mPartNumber);
 	}
 
 	public int compareTo(Item other) {
