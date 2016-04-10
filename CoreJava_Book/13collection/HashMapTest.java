@@ -21,7 +21,13 @@ public class HashMapTest {
 
 		// get test
 		System.out.println(staff.get("157-62-7935"));
-		
+
+		// iterate throut all entries
+		for (Map.Entry<String, String> entry : staff.entrySet()) {
+			String key = entry.getKey();
+			String value = entry.getValue();
+			System.out.println("key=" + key + ", value=" + value);
+		}
 	}
 
 	public static void main(String[] args) {
