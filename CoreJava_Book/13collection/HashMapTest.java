@@ -11,6 +11,17 @@ public class HashMapTest {
 		staff.put("456-62-5527", "Francesca Cruz");
 		System.out.println(staff);
 
+		// remove test
+		staff.remove("567-24-2546");
+		System.out.println(staff);
+
+		// use put to replace
+		staff.put("456-62-5527", "Francesca Miller");
+		System.out.println(staff);
+
+		// get test
+		System.out.println(staff.get("157-62-7935"));
+		
 	}
 
 	public static void main(String[] args) {
