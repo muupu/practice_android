@@ -22,7 +22,9 @@ public class PairTest2 {
 }
 
 class ArrayAlg {
+
 	public static <T  extends Comparable> Pair<T> minmax(T[] a) {
+		// if (a instanceof Pair<String> ) { } // 错误: instanceof 的泛型类型不合法
 		if (a == null || a.length == 0) return null;
 		T min = a[0];
 		T max = a[0];
