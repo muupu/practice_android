@@ -16,6 +16,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 参考资料：http://www.open-open.com/lib/view/open1418868231839.html
+ */
 public class MainActivity extends Activity {
 
 
@@ -54,26 +57,53 @@ public class MainActivity extends Activity {
     private final BroadcastReceiver broadcastRec = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            Log.d("MediaAction", action);
-            Toast.makeText(getApplicationContext(), "MediaAction=" + action, Toast.LENGTH_LONG).show();
-            if (action.equals("android.intent.action.MEDIA_MOUNTED"))
-            {
-                //todo
-            } else if (action.equals(Intent.ACTION_MEDIA_UNMOUNTED))
-            {
-                //todo
-            }else if (action.equals(Intent.ACTION_MEDIA_SCANNER_STARTED)){
+        String action = intent.getAction();
+        writeFileLog("MediaAction=" + action);
+        Toast.makeText(getApplicationContext(), "MediaAction=" + action, Toast.LENGTH_LONG).show();
+        if (action.equals("android.intent.action.MEDIA_MOUNTED"))
+        {
 
-            }else if (action.equals(Intent.ACTION_MEDIA_SCANNER_FINISHED)){
+        } else if (action.equals(Intent.ACTION_MEDIA_UNMOUNTED)) {
 
-            }else if (action.equals(Intent.ACTION_MEDIA_SHARED)){
+        }else if (action.equals(Intent.ACTION_MEDIA_SCANNER_STARTED)){
 
-            }else {
-            }
+        }else if (action.equals(Intent.ACTION_MEDIA_SCANNER_FINISHED)){
+
+        }else if (action.equals(Intent.ACTION_MEDIA_SHARED)){
+
+        }else {
+        }
         }
     };
 
-
+    private static void writeFileLog(String str) {
+        String logDir = Environment.getExternalStorageDirectory().getAbsolutePath();
+        File logFile = new File(logDir);
+        if (!logFile.exists()) {
+            logFile.mkdirs();
+        }
+        FileOutputStream trace = null;
+        try {
+            File file = new File(logDir + "/linklog.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            trace = new FileOutputStream(file, true);
+            long timeMillis = System.currentTimeMillis();
+            String log = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(timeMillis)) + ":" + str;
+            trace.write((log + "\r\n").getBytes());
+            trace.flush();
+        } catch (Exception e) {
+            e.toString();
+        } finally {
+            if (trace != null) {
+                try {
+                    trace.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
 }
