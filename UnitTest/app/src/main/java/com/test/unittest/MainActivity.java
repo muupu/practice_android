@@ -1,7 +1,6 @@
 package com.test.unittest;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -39,37 +38,9 @@ public class MainActivity extends Activity {
 //        Log.d("zqd", checkString("\"小米手机\"", 7));
     }
 
-    //英文占1byte，非英文（可认为是中文）占2byte，根据这个特性来判断字符
-    public static boolean checkChar(char ch) {
-        byte[] bytes = (ch + "").getBytes();
-        if (bytes.length == 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    /**
-     * 字符串首尾截除指定的字符
-     * @param str 待截除的字符串
-     * @param ch 制定的字符
-     * @return
-     */
-    public static String trimString(String str, char ch) {
-        int start = 0;
-        int last = str.length() - 1;
-        int end = last;
-        while ((start < end) && (str.charAt(start) == ch)) {
-            start++;
-        }
-        while ((end > start) && (str.charAt(end) == ch)) {
-            end--;
-        }
-        if (start == 0 && end == last) {
-            return str;
-        }
-        return str.substring(start, end + 1);
-    }
+
+
 
     public static String checkString2(String str, int maxLength) {
         if (str != null) {
@@ -77,7 +48,7 @@ public class MainActivity extends Activity {
             StringBuilder res = new StringBuilder();
             for (int i = 0; i < str.length(); i++) {
                 char c = str.charAt(i);
-                if (!checkChar(c)) {
+                if (!StringUtils.isEnglishChar(c)) {
                     count += 1; // 中文
                 } else {
                     count += 0.5; // 英文
@@ -96,7 +67,7 @@ public class MainActivity extends Activity {
 
     public static String checkSSIDMaxLength(String ssid) {
         if (ssid != null) {
-            String str = trimString(ssid, '\"');
+            String str = StringUtils.trimString(ssid, '\"');
             str = checkString2(str, 7);
             return "\"" + str +"\"";
         } else {
@@ -117,7 +88,7 @@ public class MainActivity extends Activity {
             }
             for (int i = 0; i < str.length(); i++) {
                 char c = str.charAt(i);
-                if (!checkChar(c)) {
+                if (!StringUtils.isEnglishChar(c)) {
                     count += 1; // 中文
                 } else {
                     count += 0.5; // 英文
