@@ -1,17 +1,24 @@
 # practice_android
 
-1 FirstCode_Book 《第一行代码》 
+* FirstCode_Book: 《第一行代码》学习
 
-2 CoreJava_Book 《Java核心技术 卷1》
+* CoreJava_Book: 《Java核心技术.卷1》学习
 
-3 UnitTest 单元测试学习
+* UnitTest: 单元测试学习
 
-4 minicat 蘑菇饭App学习
+* minicat: 蘑菇饭App学习
 
-5 Java_Basic Java基础练习
+* Java_Basic: Java基础知识锻炼
 
-6 JniDemo JNI技术学习
+* JniDemo: JNI技术学习
 
-7 OpenFileDialog 打开文件对话框
+* OpenFileDialog: 实现一个打开文件的对话框
 
+* UsbDemo: Usb应用demo
+
+* ExpandableListTest: ExpandableList的应用demo
+
+* BluetoothTether：实现BluetoothTether功能
+
+* ImageLoader：实现一个图片加载库
 
