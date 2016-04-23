@@ -4,11 +4,13 @@
 
 * CoreJava_Book: 《Java核心技术.卷1》学习
 
-* UnitTest: 单元测试学习
+* EffectiveJava2: 《Effective Java. Second Edition》学习
+
+* Java_Basic: Java基础知识巩固
+
+* UnitTest: Java单元测试学习
 
 * minicat: 蘑菇饭App学习
-
-* Java_Basic: Java基础知识锻炼
 
 * JniDemo: JNI技术学习
 
