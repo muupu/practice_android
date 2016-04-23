@@ -7,7 +7,7 @@
 因为无法给Singleton类做一个mock实现，除非it implements an interface that serves as its type
 
 
-###懒汉式单例
+###1、懒汉式单例
 ```java
 public class Singleton1 {  
 	private static Singleton1 instance = null; 
@@ -32,7 +32,7 @@ public class Singleton1 {
 
 1. 效率低。每次调用getInstance()都需要进行同步，即使instance已经被初始化了。
 
-###饿汉式单例
+###2、饿汉式单例
 ```java
 public class Singleton2 {
 	private static final Singleton2 instance = new Singleton2();
@@ -44,14 +44,16 @@ public class Singleton2 {
 }
 ```
 优点：
+
 基于classloder机制避免了多线程的同步问题。
 
 缺点：
+
 在类装载时就初始化单例，没有达到lazy loading的效果。想象一下，如果实例化instance很消耗资源，我想让他延迟加载，另外一方面，我不希望在Singleton类加载时就实例化，因为我不能确保Singleton类还可能在其他的地方被主动使用从而被加载，那么这个时候实例化instance显然是不合适的。
 
 解决：使用lazy loading的单例
 
-###双重检查锁定：Double CheckLock
+###3、双重检查锁定：Double CheckLock
 ```java
 public class Singleton3 {  
 	private static Singleton3 instance = null; 
@@ -71,6 +73,7 @@ public class Singleton3 {
 } 
 ```
 优点：
+
 1. lazy loading。
 2. 线程安全
 3. 单例对象初始化后再调用getInstance()不进行同步锁
@@ -83,7 +86,7 @@ public class Singleton3 {
 1. 添加volatile关键字。JDK1.5及之后的版本，修订了内存模型，并给volatile赋予了acquire/release语义。
 2. 使用静态内部类的装载类实现
 
-###静态内部类（推荐使用）
+###4、静态内部类（推荐使用）
 ```java
 public class Singleton4 {
 
@@ -106,12 +109,18 @@ public class Singleton4 {
 
 ###总结
 具有lazy loading功能的有
+
 1. 懒汉式单例
 2. 双重检查锁定：Double CheckLock
 3. 静态内部类（推荐使用）
 
 ###其他参考资料
 http://blog.csdn.net/jason0539/article/details/23297037
+
 http://www.blogjava.net/kenzhh/archive/2013/03/15/357824.html
+
+https://github.com/giantray/stackoverflow-java-top-qa/blob/master/contents/what-is-an-efficient-way-to-implement-a-singleton-in-java.md#appendix
+
 《Android源码设计模式：解析和实战》
+
 《深入浅出设计模式》
