@@ -15,6 +15,16 @@ import android.widget.Toast;
  */
 public class TitleLayout extends LinearLayout {
 
+    private OnBackClickListener mOnBackListener;
+
+    /**
+     * 返回按钮的回调函数
+     * @param listener
+     */
+    public void setOnBackClickListener(OnBackClickListener listener) {
+        this.mOnBackListener = listener;
+    }
+
     public TitleLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.titile, this);
@@ -24,9 +34,10 @@ public class TitleLayout extends LinearLayout {
         titleBack.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Activity)getContext()).finish();
+                onBack();
             }
         });
+
         titleEdit.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,4 +45,17 @@ public class TitleLayout extends LinearLayout {
             }
         });
     }
+
+    private void onBack() {
+        if (mOnBackListener != null) {
+            mOnBackListener.onBackClick();
+        }
+        ((Activity)getContext()).finish();
+    }
+
+    public interface OnBackClickListener {
+        void onBackClick();
+    }
+
+
 }
