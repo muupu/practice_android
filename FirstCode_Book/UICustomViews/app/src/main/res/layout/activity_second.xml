@@ -6,7 +6,7 @@
     <com.test.uicustomviews.TitleLayout
         android:id="@+id/second_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
     </com.test.uicustomviews.TitleLayout>
 

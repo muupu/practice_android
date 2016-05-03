@@ -12,7 +12,8 @@
     <com.test.uicustomviews.TitleLayout
         android:id="@+id/main_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.test.uicustomviews.TitleLayout>
+        android:layout_height="wrap_content">
+    </com.test.uicustomviews.TitleLayout>
 
     <!--<Button-->
         <!--android:id="@+id/main_button"-->
