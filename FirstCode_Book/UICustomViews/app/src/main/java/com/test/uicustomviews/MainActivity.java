@@ -20,18 +20,15 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         mTitleLayout = (TitleLayout)findViewById(R.id.main_title);
-
         mTitleLayout.setOnBackClickListener(new TitleLayout.OnBackClickListener(){
             @Override
             public void onBackClick() {
                 Toast.makeText(MainActivity.this, "You clicked Back button", Toast.LENGTH_SHORT).show();
             }
         });
-
-        Button mainButton = (Button)findViewById(R.id.main_button);
-        mainButton.setOnClickListener(new View.OnClickListener() {
+        mTitleLayout.setOnEditListener(new TitleLayout.OnEditClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onEditClick() {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivity(intent);
             }

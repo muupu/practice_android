@@ -14,12 +14,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></com.test.uicustomviews.TitleLayout>
 
-    <Button
-        android:id="@+id/main_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/main_title"
-        android:text="button"
-        />
+    <!--<Button-->
+        <!--android:id="@+id/main_button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/main_title"-->
+        <!--android:text="button"-->
+        <!--/>-->
 
 </RelativeLayout>

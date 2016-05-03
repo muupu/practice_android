@@ -17,12 +17,18 @@ public class TitleLayout extends LinearLayout {
 
     private OnBackClickListener mOnBackListener;
 
+    private OnEditClickListener mOnEditListener;
+
     /**
      * 返回按钮的回调函数
      * @param listener
      */
     public void setOnBackClickListener(OnBackClickListener listener) {
         this.mOnBackListener = listener;
+    }
+
+    public void setOnEditListener(OnEditClickListener listener) {
+        this.mOnEditListener = listener;
     }
 
     public TitleLayout(Context context, AttributeSet attrs) {
@@ -41,7 +47,7 @@ public class TitleLayout extends LinearLayout {
         titleEdit.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "You clicked Edit button", Toast.LENGTH_SHORT).show();
+                onEdit();
             }
         });
     }
@@ -53,8 +59,19 @@ public class TitleLayout extends LinearLayout {
         ((Activity)getContext()).finish();
     }
 
+    private void onEdit() {
+        if (mOnEditListener != null) {
+            mOnEditListener.onEditClick();
+        }
+        Toast.makeText(getContext(), "You clicked Edit button", Toast.LENGTH_SHORT).show();
+    }
+
     public interface OnBackClickListener {
         void onBackClick();
+    }
+
+    public interface OnEditClickListener {
+        void onEditClick();
     }
 
 
