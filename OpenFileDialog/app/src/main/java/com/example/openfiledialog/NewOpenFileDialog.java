@@ -62,11 +62,11 @@ public class NewOpenFileDialog extends Dialog {
         super.onCreate(savedInstanceState);
         Map<String, Integer> images = new HashMap<String, Integer>();
         // 下面几句设置各文件类型的图标， 需要你先把图标添加到资源文件夹
-        images.put(OpenFileDialog.sRoot, R.drawable.filedialog_root);	// 根目录图标
-        images.put(OpenFileDialog.sParent, R.drawable.filedialog_folder_up);	//返回上一层的图标
-        images.put(OpenFileDialog.sFolder, R.drawable.filedialog_folder);	//文件夹图标
+        images.put(NewOpenFileDialog.sRoot, R.drawable.filedialog_root);	// 根目录图标
+        images.put(NewOpenFileDialog.sParent, R.drawable.filedialog_folder_up);	//返回上一层的图标
+        images.put(NewOpenFileDialog.sFolder, R.drawable.filedialog_folder);	//文件夹图标
         images.put("wav", R.drawable.filedialog_wavfile);	//wav文件图标
-        images.put(OpenFileDialog.sEmpty, R.drawable.filedialog_file);
+        images.put(NewOpenFileDialog.sEmpty, R.drawable.filedialog_file);
         setContentView(new FileSelectView(mContext, this, mOnCloseListener, null, images));
 
     }
