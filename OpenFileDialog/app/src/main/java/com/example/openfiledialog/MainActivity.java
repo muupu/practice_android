@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.Dialog;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.EditText;
 
 public class MainActivity extends Activity {
@@ -23,8 +22,8 @@ public class MainActivity extends Activity {
 
         selectedPathEditText = (EditText)findViewById(R.id.editText);
 
-        final NewOpenFileDialog openFileDialog = new NewOpenFileDialog(this);
-        openFileDialog.setOnCloseListener(new NewOpenFileDialog.OnCloseListener() {
+        final OpenFileDialog openFileDialog = new OpenFileDialog(this);
+        openFileDialog.setOnCloseListener(new OpenFileDialog.OnCloseListener() {
             @Override
             public void onSelected(String selectedFile) {
                 selectedPathEditText.setText(selectedFile);
@@ -35,36 +34,9 @@ public class MainActivity extends Activity {
         findViewById(R.id.button_openfile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-//                showDialog(openfileDialogId);
                 openFileDialog.setTitle("Select a File...");
                 openFileDialog.show();
             }
         });
-    }
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        if(id==openfileDialogId){
-            Map<String, Integer> images = new HashMap<String, Integer>();
-            // 下面几句设置各文件类型的图标， 需要你先把图标添加到资源文件夹
-            images.put(OpenFileDialog.sRoot, R.drawable.filedialog_root);	// 根目录图标
-            images.put(OpenFileDialog.sParent, R.drawable.filedialog_folder_up);	//返回上一层的图标
-            images.put(OpenFileDialog.sFolder, R.drawable.filedialog_folder);	//文件夹图标
-            images.put("wav", R.drawable.filedialog_wavfile);	//wav文件图标
-            images.put(OpenFileDialog.sEmpty, R.drawable.filedialog_root);
-            Dialog dialog = OpenFileDialog.createDialog(id, this, "打开文件", new OpenFileDialog.OnCloseListener() {
-                        @Override
-                        public void onCancel() {
-                        }
-                        @Override
-                        public void onOk(String selectedFile) {
-                            selectedPathEditText.setText(selectedFile);
-                        }
-                    },
-                    null,
-                    images);
-            return dialog;
-        }
-        return null;
     }
 }
