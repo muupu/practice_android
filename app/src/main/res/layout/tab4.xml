@@ -3,11 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f0001f"
     android:gravity="center">
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button4"
-        android:id="@+id/button" />
 </LinearLayout>
