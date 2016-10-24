@@ -3,6 +3,9 @@ package com.test.unittest;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 // http://zhidao.baidu.com/link?url=H4eK8cjJWkdWsU_4toFAyFmUCO5yZk4Y9ylFszlwsTW4yV3xhniVPaDmf7L1xiAtKLDChiLXoYpdqexenipQ-T2QecMLACOyRZtt4pxY_tS
 public class MainActivity extends Activity {
@@ -11,6 +14,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
 //        String str = "ABCABCDEFGHIJKLMNOPQ小米手机";
 //        String str = "ABCABCDEFGH小米手机";
@@ -28,17 +33,21 @@ public class MainActivity extends Activity {
 //        Log.d("zqd", checkString("ABCABCDEs小米手机", 7));
 //        Log.d("zqd", checkString("\"AB小米手机CABCDEs\"", 7));
 //        Log.d("zqd", checkString("\"ABCABCDEs小米手机\"", 7));
-        String str = checkString("", 7);
-        int l = str.length();
-        Log.d("zqd", str);
-        Log.d("zqd", String.valueOf(l));
-        Log.d("zqd", checkString("", 7));
+//        String str = checkString("", 7);
+//        int l = str.length();
+//        Log.d("zqd", str);
+//        Log.d("zqd", String.valueOf(l));
+//        Log.d("zqd", checkString("", 7));
 //        Log.d("zqd", checkString("\"\"", 7));
 //        Log.d("zqd", checkString("小米手机", 7));
 //        Log.d("zqd", checkString("\"小米手机\"", 7));
     }
 
-
+    public void sayHello(View v){
+        TextView textView = (TextView) findViewById(R.id.textView);
+        EditText editText = (EditText) findViewById(R.id.editText);
+        textView.setText("Hello, " + editText.getText().toString() + "!");
+    }
 
 
 
