@@ -1,4 +1,5 @@
-
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CopyOnWriteArrayListTest {
 	
@@ -14,25 +15,27 @@ public class CopyOnWriteArrayListTest {
 		new Thread(){
 			@Override
 			public void run() {
-				for(int i=0;i<cowList.size();i++)
+				// for(int i=0;i<cowList.size();i++)
+				// {
+					// try {
+						// Thread.currentThread().sleep(1);
+					// } catch (InterruptedException e) {
+						// e.printStackTrace();
+					// }
+					// System.out.println(cowList.get(i));
+				// }  // java.lang.ArrayIndexOutOfBoundsException: 0
+				
+				
+				Iterator<Integer> it = cowList.iterator();
+				while(it.hasNext())
 				{
 					try {
 						Thread.currentThread().sleep(1);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					System.out.println(cowList.get(i));
+					System.out.println(it.next());
 				}
-//				Iterator<Integer> it = cowList.iterator();
-//				while(it.hasNext())
-//				{
-//					try {
-//						Thread.currentThread().sleep(1);
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//					}
-//					System.out.println(it.next());
-//				}
 			};
 		}.start();
 		
