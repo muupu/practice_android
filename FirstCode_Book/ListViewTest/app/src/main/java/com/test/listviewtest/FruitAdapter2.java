@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
+ * 继承自BaseAdapter
  * Created by qiaoda.zqd on 2016/10/30.
  */
 
@@ -62,4 +63,6 @@ public class FruitAdapter2 extends BaseAdapter {
         viewHolder.fruitName.setText(fruit.getName());
         return view;
     }
+
+
 }

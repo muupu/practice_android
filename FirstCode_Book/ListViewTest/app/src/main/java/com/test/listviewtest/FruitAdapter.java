@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
+ * 继承自ArrayAdapter<T>
  * Created by qiaoda.zqd on 2016/3/3.
  */
 public class FruitAdapter extends ArrayAdapter<Fruit> {

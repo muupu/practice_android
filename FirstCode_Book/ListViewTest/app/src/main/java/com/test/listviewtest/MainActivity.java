@@ -39,7 +39,8 @@ public class MainActivity extends Activity {
 
         initFruits();
         // FruitAdapter adapter = new FruitAdapter(MainActivity.this, R.layout.fruit_item, fruitList);
-        FruitAdapter2 adapter = new FruitAdapter2(MainActivity.this, fruitList);
+//        FruitAdapter2 adapter = new FruitAdapter2(MainActivity.this, fruitList);
+        FruitAdapter3 adapter = new FruitAdapter3(MainActivity.this, fruitList);
 
         ListView listView = (ListView)findViewById(R.id.list_view);
         listView.setAdapter(adapter);
@@ -53,25 +54,25 @@ public class MainActivity extends Activity {
     }
 
     private void initFruits() {
-        Fruit apple = new Fruit("Apple", R.drawable.apple_pic);
+        Fruit apple = new Fruit("Apple", R.drawable.apple_pic, Fruit.TYPE_1);
         fruitList.add(apple);
-        Fruit banana = new Fruit("Banana", R.drawable.banana_pic);
+        Fruit banana = new Fruit("Banana", R.drawable.banana_pic, Fruit.TYPE_1);
         fruitList.add(banana);
-        Fruit orange = new Fruit("Orange", R.drawable.orange_pic);
+        Fruit orange = new Fruit("Orange", R.drawable.orange_pic, Fruit.TYPE_2);
         fruitList.add(orange);
-        Fruit watermelon = new Fruit("WaterMelon", R.drawable.watermelon_pic);
+        Fruit watermelon = new Fruit("WaterMelon", R.drawable.watermelon_pic, Fruit.TYPE_1);
         fruitList.add(watermelon);
-        Fruit pear = new Fruit("Pear", R.drawable.pear_pic);
+        Fruit pear = new Fruit("Pear", R.drawable.pear_pic, Fruit.TYPE_1);
         fruitList.add(pear);
-        Fruit grape = new Fruit("Grape", R.drawable.grape_pic);
+        Fruit grape = new Fruit("Grape", R.drawable.grape_pic, Fruit.TYPE_1);
         fruitList.add(grape);
-        Fruit pineapple = new Fruit("Pineapple", R.drawable.pineapple_pic);
+        Fruit pineapple = new Fruit("Pineapple", R.drawable.pineapple_pic, Fruit.TYPE_1);
         fruitList.add(pineapple);
-        Fruit strawberry = new Fruit("Strawberry", R.drawable.strawberry_pic);
+        Fruit strawberry = new Fruit("Strawberry", R.drawable.strawberry_pic, Fruit.TYPE_2);
         fruitList.add(strawberry);
-        Fruit cherry = new Fruit("Cherry", R.drawable.cherry_pic);
+        Fruit cherry = new Fruit("Cherry", R.drawable.cherry_pic, Fruit.TYPE_1);
         fruitList.add(cherry);
-        Fruit mango = new Fruit("Mango", R.drawable.mango_pic);
+        Fruit mango = new Fruit("Mango", R.drawable.mango_pic, Fruit.TYPE_1);
         fruitList.add(mango);
     }
 }
