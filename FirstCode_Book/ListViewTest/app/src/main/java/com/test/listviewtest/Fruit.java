@@ -29,4 +29,6 @@ public class Fruit {
     public int getType() {
         return type;
     }
+
+
 }

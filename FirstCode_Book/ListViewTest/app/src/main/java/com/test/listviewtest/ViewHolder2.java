@@ -7,7 +7,7 @@ import android.widget.TextView;
  * Created by qiaoda.zqd on 2016/10/30.
  */
 
-public class ViewHolder2 {
+public class ViewHolder2 implements IViewHolder{
     ImageView fruitImage;
     TextView fruitName;
 }

@@ -18,11 +18,11 @@ import java.util.List;
 
 public class FruitAdapter3 extends BaseAdapter {
 
-    private List<Fruit> mList;
+    private List<FruitView> mList;
     private Context mContext;
     private LayoutInflater mInflater;
 
-    public FruitAdapter3(Context context, List<Fruit> list) {
+    public FruitAdapter3(Context context, List<FruitView> list) {
         this.mContext = context;
         this.mList = list;
         mInflater = LayoutInflater.from(context);
@@ -46,7 +46,7 @@ public class FruitAdapter3 extends BaseAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        return mList.get(position).getType();
+        return mList.get(position).getViewType();
     }
 
     @Override
@@ -56,54 +56,11 @@ public class FruitAdapter3 extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Fruit fruit = (Fruit) getItem(position); // 获取当前项的Fruit实例
-        int type = fruit.getType();
-        ViewHolder viewHolder = null;
-        ViewHolder2 viewHolder2 = null;
+        FruitView fruit = (FruitView) getItem(position); // 获取当前项的Fruit实例
         if (convertView == null) {
-            switch (type) {
-                case Fruit.TYPE_1:
-                    viewHolder = new ViewHolder();
-                    convertView = LayoutInflater.from(mContext).inflate(R.layout.fruit_item, null);
-                    viewHolder.fruitImage = (ImageView)convertView.findViewById(R.id.fruit_image);
-                    viewHolder.fruitName = (TextView)convertView.findViewById(R.id.fruit_name);
-                    convertView.setTag(viewHolder); // 将ViewHolder存储在View中
-                    break;
-                case Fruit.TYPE_2:
-                    viewHolder2 = new ViewHolder2();
-                    convertView = LayoutInflater.from(mContext).inflate(R.layout.fruit_item2, null);
-                    viewHolder2.fruitImage = (ImageView)convertView.findViewById(R.id.fruit_image);
-                    viewHolder2.fruitName = (TextView)convertView.findViewById(R.id.fruit_name);
-                    convertView.setTag(viewHolder2); // 将ViewHolder2存储在View中
-                    break;
-                default:
-                    break;
-            }
-
-        } else {
-            switch (type) {
-                case Fruit.TYPE_1:
-                    viewHolder = (ViewHolder) convertView.getTag();// 重新获取ViewHolder
-                    break;
-                case Fruit.TYPE_2:
-                    viewHolder2 = (ViewHolder2)convertView.getTag();
-                    break;
-                default:
-                    break;
-            }
+            convertView = fruit.getConvertView(mContext);
         }
-        switch (type) {
-            case Fruit.TYPE_1:
-                viewHolder.fruitImage.setImageResource(fruit.getImageId());
-                viewHolder.fruitName.setText(fruit.getName());
-                break;
-            case Fruit.TYPE_2:
-                viewHolder2.fruitImage.setImageResource(fruit.getImageId());
-                viewHolder2.fruitName.setText(fruit.getName());
-                break;
-            default:
-                break;
-        }
+        fruit.refreashView(convertView);
         return convertView;
     }
 }
