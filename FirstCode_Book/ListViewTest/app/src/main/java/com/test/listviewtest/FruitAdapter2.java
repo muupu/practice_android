@@ -1,34 +1,55 @@
 package com.test.listviewtest;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 /**
- * Created by qiaoda.zqd on 2016/3/3.
+ * Created by qiaoda.zqd on 2016/10/30.
  */
-public class FruitAdapter extends ArrayAdapter<Fruit> {
 
-    private int resourceId;
+public class FruitAdapter2 extends BaseAdapter {
 
-    public FruitAdapter(Context context, int textViewResourceId, List<Fruit> objects) {
-        super(context, textViewResourceId, objects);
-        resourceId = textViewResourceId;
+    private List<Fruit> mList;
+    private Context mContext;
+    private LayoutInflater mInflater;
+
+    public FruitAdapter2(Context context, List<Fruit> list) {
+        this.mContext = context;
+        this.mList = list;
+        mInflater = LayoutInflater.from(context);
+    }
+
+    @Override
+    public int getCount() {
+        Log.d("list", "mList.size()" + mList.size());
+        return mList.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return mList.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Fruit fruit = getItem(position); // 获取当前项的Fruit实例
+        Fruit fruit = (Fruit) getItem(position); // 获取当前项的Fruit实例
         View view = null;
         ViewHolder viewHolder = null;
         if (convertView == null) {
-            view = LayoutInflater.from(getContext()).inflate(resourceId, null);
+            view = LayoutInflater.from(mContext).inflate(R.layout.fruit_item, null);
             viewHolder = new ViewHolder();
             viewHolder.fruitImage = (ImageView)view.findViewById(R.id.fruit_image);
             viewHolder.fruitName = (TextView)view.findViewById(R.id.fruit_name);

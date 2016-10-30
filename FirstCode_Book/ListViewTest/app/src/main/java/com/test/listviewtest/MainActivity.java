@@ -38,7 +38,8 @@ public class MainActivity extends Activity {
 //                MainActivity.this, android.R.layout.simple_list_item_1, data);
 
         initFruits();
-        FruitAdapter adapter = new FruitAdapter(MainActivity.this, R.layout.fruit_item, fruitList);
+        // FruitAdapter adapter = new FruitAdapter(MainActivity.this, R.layout.fruit_item, fruitList);
+        FruitAdapter2 adapter = new FruitAdapter2(MainActivity.this, fruitList);
 
         ListView listView = (ListView)findViewById(R.id.list_view);
         listView.setAdapter(adapter);
