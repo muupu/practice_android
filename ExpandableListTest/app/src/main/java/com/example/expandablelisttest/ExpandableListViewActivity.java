@@ -23,7 +23,9 @@ public class ExpandableListViewActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expandable_list_view);
+    }
 
+    public void btn_click(View view) {
         /**BaseExpandableListAdapter实现了ExpandableListAdapter*/
         ExpandableListAdapter adapter = new BaseExpandableListAdapter(){
 
@@ -102,7 +104,7 @@ public class ExpandableListViewActivity extends Activity {
             public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
                                      View convertView, ViewGroup parent) {
                 LinearLayout ll = new LinearLayout(ExpandableListViewActivity.this);
-                ll.setOrientation(LinearLayout.HORIZONTAL);//定义为纵向排列
+                ll.setOrientation(LinearLayout.HORIZONTAL);//定义为横向排列
                 ImageView logo = new ImageView(ExpandableListViewActivity.this);
                 logo.setImageResource(images[groupPosition]);//添加图片
                 ll.addView(logo);
@@ -116,7 +118,7 @@ public class ExpandableListViewActivity extends Activity {
 
             //定义一个TextView
             private TextView getTextView(){
-                AbsListView.LayoutParams lp = new AbsListView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,40);
+                AbsListView.LayoutParams lp = new AbsListView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
                 TextView textView = new TextView(ExpandableListViewActivity.this);
                 textView.setLayoutParams(lp);
                 textView.setPadding(36, 0, 0, 0);
