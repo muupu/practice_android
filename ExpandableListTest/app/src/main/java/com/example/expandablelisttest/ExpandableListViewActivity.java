@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 参考资料：
  * http://www.blogjava.net/jjshcc/archive/2012/02/29/371030.html
@@ -26,6 +29,26 @@ public class ExpandableListViewActivity extends Activity {
     }
 
     public void btn_click(View view) {
+        test2();
+    }
+
+    private void test2() {
+        List<GroupItem> listData = new ArrayList<GroupItem>();
+        for (int i = 0; i < 20; i++) {
+            GroupItem groupItem = new GroupItem();
+            groupItem.groupName = "AAA" + i;
+            groupItem.subNames = new ArrayList<>();
+            for (int j = 0; j < 30 ; j++) {
+                groupItem.subNames.add("BBB" + j);
+            }
+            listData.add(groupItem);
+        }
+        DataListAdapter listAdapter = new DataListAdapter(ExpandableListViewActivity.this, listData);
+        ExpandableListView expandListView = (ExpandableListView) this.findViewById(R.id.ecpandable);
+        expandListView.setAdapter(listAdapter);
+    }
+
+    private void test1() {
         /**BaseExpandableListAdapter实现了ExpandableListAdapter*/
         ExpandableListAdapter adapter = new BaseExpandableListAdapter(){
 
