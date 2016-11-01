@@ -3,7 +3,9 @@ package com.example.expandablelisttest;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.ArraySet;
 import android.util.Log;
+import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -17,12 +19,15 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 参考资料：
  * http://www.blogjava.net/jjshcc/archive/2012/02/29/371030.html
  */
 public class ExpandableListViewActivity extends Activity {
+
+    private SparseIntArray expandGroups = new SparseIntArray();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +41,11 @@ public class ExpandableListViewActivity extends Activity {
 
     private void test2() {
         List<GroupItem> listData = new ArrayList<GroupItem>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             GroupItem groupItem = new GroupItem();
             groupItem.groupName = "AAA" + i;
             groupItem.subNames = new ArrayList<>();
-            for (int j = 0; j < 5 ; j++) {
+            for (int j = 0; j < 4 ; j++) {
                 groupItem.subNames.add("BBB" + j);
             }
             listData.add(groupItem);
@@ -59,6 +64,24 @@ public class ExpandableListViewActivity extends Activity {
 //                lastPosition = groupPosition;
 //            }
 //        });
+        expandListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                expandGroups.put(groupPosition, groupPosition);
+                Log.d("elistview", "onGroupExpand groupPosition=" + groupPosition + ",expandsize=" + expandGroups.size());
+                printExpandGroups(expandGroups);
+
+            }
+        });
+        expandListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+            @Override
+            public void onGroupCollapse(int groupPosition) {
+                expandGroups.delete(groupPosition);
+                Log.d("elistview", "onGroupCollapse groupPosition=" + groupPosition + ",expandsize=" + expandGroups.size());
+                printExpandGroups(expandGroups);
+            }
+        });
+
         // 监听listview滚动
         expandListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -87,6 +110,12 @@ public class ExpandableListViewActivity extends Activity {
         });
     }
 
+    private void printExpandGroups(SparseIntArray expandGroups) {
+        for (int i = 0; i < expandGroups.size(); i++) {
+            Log.d("elistview", "expandGroups:" + expandGroups.valueAt(i));
+        }
+    }
+
     private void testOnScroll1(ExpandableListView expandListView, AbsListView view, int firstVisibleItem,
                                int visibleItemCount, int totalItemCount) {
         int npos = view.pointToPosition(0, 0); // 其实就是firstVisibleItem
@@ -105,9 +134,44 @@ public class ExpandableListViewActivity extends Activity {
         }
     }
 
+    // 滚动过程中将可视区域以外已展开的group收起
     private void testOnScroll2(ExpandableListView expandListView,AbsListView view, int firstVisibleItem,
                                int visibleItemCount, int totalItemCount) {
-        listVisibleGroup(expandListView);
+        if (expandGroups.size() > 0) {
+            printExpandGroups(expandGroups);
+            SparseIntArray expandGroupClone = expandGroups.clone();
+            int firstVis  = expandListView.getFirstVisiblePosition();
+            int lastVis = expandListView.getLastVisiblePosition();
+            int count = firstVis;
+
+            while (count <= lastVis)
+            {
+                long longposition = expandListView.getExpandableListPosition(count);
+                int type = ExpandableListView.getPackedPositionType(longposition);
+                int groupPosition = ExpandableListView.getPackedPositionGroup(longposition);
+                int childPosition = ExpandableListView.getPackedPositionChild(longposition);
+                if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+                    Log.d("elistview_visible","TYPE_CHILD group: " + groupPosition + " and child: " + childPosition );
+                } else if (type == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
+                    Log.d("elistview_visible","expandGroupClone.get: " + expandGroupClone.get(groupPosition, -1));
+                    if (expandGroupClone.get(groupPosition, -1) > 0) {
+                        expandGroupClone.delete(groupPosition);
+                    }
+                    Log.d("elistview_visible","TYPE_GROU group: " + groupPosition + " and child: " + childPosition );
+                }
+                count++;
+            }
+            Log.d("elistview_visible","cloneSize: " + expandGroupClone.size());
+            if (expandGroupClone.size() > 0) {
+                for (int i = 0; i < expandGroupClone.size(); i++) {
+                    int groupPosition = expandGroupClone.valueAt(i);
+                    Log.d("elistview_visible","expandGroupClone groupPosition: " + groupPosition + ",isGroupExpanded:" + expandListView.isGroupExpanded(groupPosition));
+                    if (expandListView.isGroupExpanded(groupPosition)) {
+                        expandListView.collapseGroup(groupPosition);
+                    }
+                }
+            }
+        }
     }
 
     // 打印可视区域内的item
