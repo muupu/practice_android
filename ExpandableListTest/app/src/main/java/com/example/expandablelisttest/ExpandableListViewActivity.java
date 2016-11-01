@@ -3,6 +3,7 @@ package com.example.expandablelisttest;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -47,14 +48,39 @@ public class ExpandableListViewActivity extends Activity {
         DataListAdapter listAdapter = new DataListAdapter(ExpandableListViewActivity.this, listData);
         final ExpandableListView expandListView = (ExpandableListView) this.findViewById(R.id.ecpandable);
         expandListView.setAdapter(listAdapter);
-        // 点击group item展开的时候，其他已展开的group收起
-        expandListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-            int lastPosition = -1;
+//        // 点击group item展开的时候，其他已展开的group收起
+//        expandListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+//            int lastPosition = -1;
+//            @Override
+//            public void onGroupExpand(int groupPosition) {
+//                if((lastPosition != -1) && (groupPosition != lastPosition) )
+//                    expandListView.collapseGroup(lastPosition );
+//                lastPosition = groupPosition;
+//            }
+//        });
+        // 监听listview滚动
+        expandListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
-            public void onGroupExpand(int groupPosition) {
-                if((lastPosition != -1) && (groupPosition != lastPosition) )
-                    expandListView.collapseGroup(lastPosition );
-                lastPosition = groupPosition;
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                Log.d("elistview", "onScrollStateChanged: scrollState=" + scrollState);
+                switch (scrollState) {
+                    // 当不滚动时
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                        Log.d("elistview", "onScrollStateChanged: scrollState=SCROLL_STATE_IDLE");
+                        // 判断滚动到底部
+                        if (view.getLastVisiblePosition() == (view.getCount() - 1)) {
+                            //TODO
+                            Log.d("elistview", "onScrollStateChanged: 滚动到底部");
+                        }
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
+                Log.d("elistview", "onScroll: firstVisibleItem=" + firstVisibleItem + ",visibleItemCount=" + visibleItemCount + ",totalItemCount=" + totalItemCount);
+
             }
         });
     }
