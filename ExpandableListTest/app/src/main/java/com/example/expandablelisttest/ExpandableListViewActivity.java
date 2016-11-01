@@ -34,18 +34,29 @@ public class ExpandableListViewActivity extends Activity {
 
     private void test2() {
         List<GroupItem> listData = new ArrayList<GroupItem>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 10; i++) {
             GroupItem groupItem = new GroupItem();
             groupItem.groupName = "AAA" + i;
             groupItem.subNames = new ArrayList<>();
-            for (int j = 0; j < 30 ; j++) {
+            for (int j = 0; j < 5 ; j++) {
                 groupItem.subNames.add("BBB" + j);
             }
             listData.add(groupItem);
         }
+
         DataListAdapter listAdapter = new DataListAdapter(ExpandableListViewActivity.this, listData);
-        ExpandableListView expandListView = (ExpandableListView) this.findViewById(R.id.ecpandable);
+        final ExpandableListView expandListView = (ExpandableListView) this.findViewById(R.id.ecpandable);
         expandListView.setAdapter(listAdapter);
+        // 点击group item展开的时候，其他已展开的group收起
+        expandListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            int lastPosition = -1;
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if(groupPosition != lastPosition )
+                    expandListView.collapseGroup(lastPosition );
+                lastPosition = groupPosition;
+            }
+        });
     }
 
     private void test1() {
