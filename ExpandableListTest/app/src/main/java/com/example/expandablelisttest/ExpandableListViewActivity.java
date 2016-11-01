@@ -81,22 +81,57 @@ public class ExpandableListViewActivity extends Activity {
             public void onScroll(AbsListView view, int firstVisibleItem,
                                  int visibleItemCount, int totalItemCount) {
                 Log.d("elistview", "onScroll: firstVisibleItem=" + firstVisibleItem + ",visibleItemCount=" + visibleItemCount + ",totalItemCount=" + totalItemCount);
-                int npos = view.pointToPosition(0, 0); // 其实就是firstVisibleItem
-                Log.d("elistview", "onScroll: pointToPosition=" + npos);
-                if (npos != AdapterView.INVALID_POSITION) {
-                    long pos = expandListView.getExpandableListPosition(npos);
-                    int childPos = ExpandableListView.getPackedPositionChild(pos);// 获取第一行child的id
-                    int groupPos = ExpandableListView.getPackedPositionGroup(pos);// 获取第一行group的id
-                    if (childPos == AdapterView.INVALID_POSITION) {// 滚动到第一行是group
-                        View groupView = expandListView.getChildAt(npos - expandListView.getFirstVisiblePosition());// 第一行的view
-//                        indicatorGroupHeight = groupView.getHeight();// 获取group的高度
-//                        indicatorGroup.setVisibility(View.GONE);// 隐藏指示器
-                    } else {// 滚动到第一行是child
-//                        indicatorGroup.setVisibility(View.VISIBLE);// 滚动到第一行是child，就显示指示器
-                    }
-                }
+//                testOnScroll1(expandListView, view, firstVisibleItem, visibleItemCount, totalItemCount);
+                testOnScroll2(expandListView, view, firstVisibleItem, visibleItemCount, totalItemCount);
             }
         });
+    }
+
+    private void testOnScroll1(ExpandableListView expandListView, AbsListView view, int firstVisibleItem,
+                               int visibleItemCount, int totalItemCount) {
+        int npos = view.pointToPosition(0, 0); // 其实就是firstVisibleItem
+        Log.d("elistview", "onScroll: pointToPosition=" + npos);
+        if (npos != AdapterView.INVALID_POSITION) {
+            long pos = expandListView.getExpandableListPosition(npos);
+            int childPos = ExpandableListView.getPackedPositionChild(pos);// 获取第一行child的id
+            int groupPos = ExpandableListView.getPackedPositionGroup(pos);// 获取第一行group的id
+            if (childPos == AdapterView.INVALID_POSITION) {// 滚动到第一行是group
+                View groupView = expandListView.getChildAt(npos - expandListView.getFirstVisiblePosition());// 第一行的view
+//                        indicatorGroupHeight = groupView.getHeight();// 获取group的高度
+//                        indicatorGroup.setVisibility(View.GONE);// 隐藏指示器
+            } else {// 滚动到第一行是child
+//                        indicatorGroup.setVisibility(View.VISIBLE);// 滚动到第一行是child，就显示指示器
+            }
+        }
+    }
+
+    private void testOnScroll2(ExpandableListView expandListView,AbsListView view, int firstVisibleItem,
+                               int visibleItemCount, int totalItemCount) {
+        listVisibleGroup(expandListView);
+    }
+
+    // 打印可视区域内的item
+    public void listVisibleGroup(ExpandableListView expandListView)
+    {
+        int firstVis  = expandListView.getFirstVisiblePosition();
+        int lastVis = expandListView.getLastVisiblePosition();
+
+        int count = firstVis;
+
+        while (count <= lastVis)
+        {
+            long longposition = expandListView.getExpandableListPosition(count);
+            int type = ExpandableListView.getPackedPositionType(longposition);
+            int groupPosition = ExpandableListView.getPackedPositionGroup(longposition);
+            int childPosition = ExpandableListView.getPackedPositionChild(longposition);
+            if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+                Log.d("elistview_visible","TYPE_CHILD group: " + groupPosition + " and child: " + childPosition );
+            } else if (type == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
+                Log.d("elistview_visible","TYPE_GROU group: " + groupPosition + " and child: " + childPosition );
+            }
+            count++;
+
+        }
     }
 
     private void test1() {
