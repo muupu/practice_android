@@ -52,7 +52,7 @@ public class ExpandableListViewActivity extends Activity {
             int lastPosition = -1;
             @Override
             public void onGroupExpand(int groupPosition) {
-                if(groupPosition != lastPosition )
+                if((lastPosition != -1) && (groupPosition != lastPosition) )
                     expandListView.collapseGroup(lastPosition );
                 lastPosition = groupPosition;
             }
