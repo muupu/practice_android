@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.ArraySet;
 import android.util.Log;
 import android.util.SparseIntArray;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -26,7 +27,11 @@ import java.util.Set;
  * http://www.blogjava.net/jjshcc/archive/2012/02/29/371030.html
  */
 public class ExpandableListViewActivity extends Activity {
-
+    private int lastVisibleItemPosition;// 上次滑动位置
+    private boolean isScrolling = false;// 是否滑动
+    private static final int SCROLL_UP = 1; // 向上滑动
+    private static final int SCROLL_DOWN = 1; // 向上滑动
+    private int mScrollAction = 0;
     private SparseIntArray expandGroups = new SparseIntArray();
 
     @Override
@@ -87,16 +92,18 @@ public class ExpandableListViewActivity extends Activity {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 Log.d("elistview", "onScrollStateChanged: scrollState=" + scrollState);
-                switch (scrollState) {
-                    // 当不滚动时
-                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                    isScrolling = true;
+                } else {
+                    isScrolling = false;
+                    if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
                         Log.d("elistview", "onScrollStateChanged: scrollState=SCROLL_STATE_IDLE");
                         // 判断滚动到底部
                         if (view.getLastVisiblePosition() == (view.getCount() - 1)) {
                             //TODO
                             Log.d("elistview", "onScrollStateChanged: 滚动到底部");
                         }
-                        break;
+                    }
                 }
             }
 
@@ -135,8 +142,18 @@ public class ExpandableListViewActivity extends Activity {
     }
 
     // 滚动过程中将可视区域以外已展开的group收起
-    private void testOnScroll2(ExpandableListView expandListView,AbsListView view, int firstVisibleItem,
+    private void testOnScroll2(ExpandableListView expandListView, AbsListView view, int firstVisibleItem,
                                int visibleItemCount, int totalItemCount) {
+        if (isScrolling) {
+            if (firstVisibleItem > lastVisibleItemPosition) {
+                mScrollAction = SCROLL_UP;
+                Log.d("elistview_visible", "上滑");
+            } else if (firstVisibleItem < lastVisibleItemPosition) {
+                mScrollAction = SCROLL_DOWN;
+                Log.d("elistview_visible", "下滑");
+            }
+            lastVisibleItemPosition = firstVisibleItem;
+        }
         if (expandGroups.size() > 0) {
             printExpandGroups(expandGroups);
             SparseIntArray expandGroupClone = expandGroups.clone();
@@ -151,10 +168,14 @@ public class ExpandableListViewActivity extends Activity {
                 int groupPosition = ExpandableListView.getPackedPositionGroup(longposition);
                 int childPosition = ExpandableListView.getPackedPositionChild(longposition);
                 if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
-                    Log.d("elistview_visible","TYPE_CHILD group: " + groupPosition + " and child: " + childPosition );
+                    int childreCount = expandListView.getExpandableListAdapter().getChildrenCount(groupPosition);
+                    Log.d("elistview_visible","TYPE_CHILD group: " + groupPosition + " and child: " + childPosition + ",childreCount=" + childreCount);
+                    if (mScrollAction == SCROLL_DOWN && childPosition == childreCount - 1) {
+                        expandGroupClone.delete(groupPosition);
+                    }
                 } else if (type == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
                     Log.d("elistview_visible","expandGroupClone.get: " + expandGroupClone.get(groupPosition, -1));
-                    if (expandGroupClone.get(groupPosition, -1) > 0) {
+                    if (mScrollAction == SCROLL_UP && expandGroupClone.get(groupPosition, -1) > 0) {
                         expandGroupClone.delete(groupPosition);
                     }
                     Log.d("elistview_visible","TYPE_GROU group: " + groupPosition + " and child: " + childPosition );
